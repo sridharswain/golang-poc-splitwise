@@ -2,7 +2,6 @@ package main
 
 import (
 	"user-service/config"
-	"user-service/model"
 
 	"github.com/gin-gonic/gin"
 )
@@ -21,12 +20,7 @@ func main() {
 	config.StartDB()
 	db := config.GetDB()
 	defer db.Close()
-	for i := 0; i < 100; i++ {
-		go func() {
-			user := model.User{Name: "User1", Email: "user1@gmail.com"}
-			db.Create(&user)
-		}()
-	}
+
 	// Start Router
 	startRouter()
 }
